@@ -55,10 +55,7 @@ namespace DatabaseOperations
             var connectionStringMySql = builder.Configuration.GetConnectionString("MySqlConnection");
             builder.Services
                 .AddDbContext<MyDbContext>(o =>
-                    o.UseMySql(connectionStringMySql, serverVersion)
-                        .LogTo(Console.WriteLine, LogLevel.Information)
-                        .EnableSensitiveDataLogging()
-                        .EnableDetailedErrors());
+                    o.UseMySql(connectionStringMySql, serverVersion));
         }
     }
 }

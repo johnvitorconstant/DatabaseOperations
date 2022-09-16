@@ -1,4 +1,6 @@
-﻿namespace DatabaseOperations.Models;
+﻿using Newtonsoft.Json;
+
+namespace DatabaseOperations.Models;
 
 public class Contact:Entity
 {
@@ -12,4 +14,10 @@ public class Contact:Entity
 
     public User User { get; set; }
     public int UserId { get; set; }
+
+    [JsonConstructor]
+    public Contact()
+    {
+        
+    }
 }
