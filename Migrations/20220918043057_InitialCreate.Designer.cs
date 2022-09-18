@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DatabaseOperations.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    [Migration("20220915021406_mySql")]
-    partial class mySql
+    [Migration("20220918043057_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -215,11 +215,13 @@ namespace DatabaseOperations.Migrations
 
             modelBuilder.Entity("DatabaseOperations.Models.User", b =>
                 {
-                    b.HasOne("DatabaseOperations.Models.Department", null)
+                    b.HasOne("DatabaseOperations.Models.Department", "Department")
                         .WithMany("Users")
                         .HasForeignKey("DepartmentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Department");
                 });
 
             modelBuilder.Entity("GroupUser", b =>

@@ -213,11 +213,13 @@ namespace DatabaseOperations.Migrations
 
             modelBuilder.Entity("DatabaseOperations.Models.User", b =>
                 {
-                    b.HasOne("DatabaseOperations.Models.Department", null)
+                    b.HasOne("DatabaseOperations.Models.Department", "Department")
                         .WithMany("Users")
                         .HasForeignKey("DepartmentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Department");
                 });
 
             modelBuilder.Entity("GroupUser", b =>

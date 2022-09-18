@@ -1,3 +1,4 @@
+using AutoMapper;
 using DatabaseOperations.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal;
@@ -16,6 +17,18 @@ namespace DatabaseOperations
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+
+            var mapperConfig = new MapperConfiguration(c =>
+            {
+                c.AddProfile(new MappingProfile());
+            });
+
+            IMapper mapper = mapperConfig.CreateMapper();
+
+            builder.Services.AddSingleton(mapper);
+            builder.Services.AddControllersWithViews().AddNewtonsoftJson(o =>
+                o.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
             ConnectToMySql(builder);
            // ConnectToSqlServer(builder);
